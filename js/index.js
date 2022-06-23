@@ -1,11 +1,3 @@
-findex = 7;
-
-fvalue = 13;
-
-document.getElementById("index").innerHTML = findex;
-
-let prevalue = 0;
-let nextvalue = 1;
 let number = document.getElementById("index").value;
 let button = document.getElementById("btn");
 
