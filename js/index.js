@@ -1,7 +1,62 @@
 let number = document.getElementById("index").value;
 let button = document.getElementById("btn");
+let checkbox = document.getElementById("checkbox");
+let resultContainer = document.getElementById("resultContainer");
+button.addEventListener("click", fibMain);
+window.addEventListener("load", sortfib);
 
-button.addEventListener("click", fib);
+function fibMain() {
+  if (!checkbox.checked) {
+    console.log("hi1");
+    document.getElementById("value").innerHTML = "0";
+    document.getElementById("spinner").classList.remove("d-none");
+    document.getElementById("value").classList.remove("text-danger");
+    fibManual(number);
+  } else {
+    console.log("hi2");
+    fib(number);
+    sortfib();
+  }
+};
+
+function fibManual() {
+  let num1 = 0;
+  let num2 = 1;
+  let res = 0;
+  document.getElementById("value").innerHTML = "";
+  document.getElementById("spinner").classList.remove("d-none");
+  document.getElementById("value").classList.remove("text-danger");
+  if (document.getElementById("index").value > 50) {
+    document.getElementById("value").classList.add("text-danger");
+    document.getElementById("spinner").classList.add("d-none");
+    document.getElementById("value").innerHTML = "Can’t be larger than 50";
+  }
+  if (document.getElementById("index").value < 1) {
+    document.getElementById("value").classList.add("text-danger");
+    document.getElementById("spinner").classList.add("d-none");
+    document.getElementById("value").innerHTML = "Can’t be smaller than 1";
+  }
+  if (
+    document.getElementById("index").value <= 50 &&
+    document.getElementById("index").value > 0
+  ) {
+    document.getElementById("value").innerHTML = "";
+    document.getElementById("spinner").classList.remove("d-none");
+    document.getElementById("value").classList.remove("text-danger");
+    let num1 = 0;
+    let num2 = 1;
+    let res = 0;
+
+    for (let i = 1; i < document.getElementById("index").value; i++) {
+      res = num1 + num2;
+      num1 = num2;
+      num2 = res;
+    }
+    console.log(res);
+    document.getElementById("value").innerHTML = res;
+    document.getElementById("spinner").classList.add("d-none");
+  }
+}
 
 function fib() {
   document.getElementById("spinner").classList.remove("d-none");
@@ -10,6 +65,11 @@ function fib() {
     document.getElementById("value").classList.add("text-danger");
     document.getElementById("spinner").classList.add("d-none");
     document.getElementById("value").innerHTML = "Can’t be larger than 50";
+  }
+  if (document.getElementById("index").value < 1) {
+    document.getElementById("value").classList.add("text-danger");
+    document.getElementById("spinner").classList.add("d-none");
+    document.getElementById("value").innerHTML = "Can’t be less than 1";
   } else {
     document.getElementById("value").innerHTML = "";
     number = document.getElementById("index").value;
@@ -49,7 +109,6 @@ function sortfib() {
     });
   });
 }
-let resultContainer = document.getElementById("resultContainer");
 
 function enterRes(sortList) {
   console.log("this is", sortList);
@@ -65,5 +124,3 @@ function enterRes(sortList) {
       "fs-5 border-bottom pb-3 border-secondary mt-3 d-inline-block";
   }
 }
-window.addEventListener("load", sortfib);
-button.addEventListener("click", sortfib);
