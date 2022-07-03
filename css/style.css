@@ -1,0 +1,6 @@
+input[type=number]{
+    -moz-appearance: textfield;
+}
+.btn {
+    font-size: 1.2rem;
+}
